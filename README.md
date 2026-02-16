@@ -94,7 +94,17 @@ Global（Auto / US / HK / JP / SG / TW / DIRECT）
 
 ### 第三步：粘贴配置
 
-**清空原有内容**，将 [`QuantumultX.conf`](QuantumultX.conf) 中的全部内容粘贴进去，点击右上角 **对勾** 保存。
+> **新手建议**：直接清空原有内容，将 [`QuantumultX.conf`](QuantumultX.conf) 中的全部内容粘贴进去，点击右上角 **对勾** 保存。
+>
+> **熟悉规则的用户**：可以根据自己的需求，在配置文件基础上自行增删规则，不必完全照搬。
+
+⚠️ **关于 MitM 部分的重要提醒**：
+
+本配置文件 `[mitm]` 部分只写了 `hostname = sub.store`。粘贴配置后，请注意：
+
+- **不要删除**你原有的 `passphrase` 和 `p12` 字段 — 这是你本机生成的 MitM 证书信息，删除后 MitM/重写功能将失效。
+- **不要泄露**你的 `passphrase` 和 `p12` 给任何人 — 这相当于你的私钥，泄露会有安全风险。
+- 正确做法：保留你自己的 `passphrase`、`p12` 内容，只将 `hostname` 行合并即可。
 
 <img src="images/03-paste-config.jpg" width="300">
 
