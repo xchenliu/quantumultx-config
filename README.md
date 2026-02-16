@@ -1,58 +1,58 @@
-# Quantumult X Configuration
+# Quantumult X 配置
 
-> **sliu's Ultimate Enterprise Edition** - A comprehensive Quantumult X configuration featuring DNS isolation, AI service routing, streaming media optimization, and ad blocking.
+> **sliu's config** — 一份开箱即用的 Quantumult X 配置，涵盖 DNS 分流、AI 服务隔离、流媒体/社交独立策略、广告拦截与电竞优化。
 
-## Features
+## 功能特性
 
-### DNS Isolation
-- Domestic sites (Taobao, JD, QQ, Bilibili, etc.) resolve via Alibaba/Tencent DNS (`223.5.5.5` / `119.29.29.29`)
-- International sites (Google, AI services, social media) resolve via Google DNS (`8.8.8.8`)
+### DNS 分流
+- 国内站点（淘宝、京东、QQ、B站等）走阿里/腾讯 DNS（`223.5.5.5` / `119.29.29.29`）
+- 海外站点（Google、AI 服务、社交平台）走 Google DNS（`8.8.8.8`）
 
-### AI Service Routing
-Each AI service has its own dedicated policy to avoid interference:
+### AI 服务独立路由
+每个 AI 服务拥有独立策略组，互不干扰：
 
-| Service | Policy | Default Region |
-|---------|--------|----------------|
-| ChatGPT / OpenAI | AI-US | Singapore |
-| Claude / Anthropic | Claude | Singapore |
-| Gemini | AI-US | US |
-| Grok | AI-US | US |
-| DeepSeek | AI-US | Singapore |
-| Perplexity | AI-US | Singapore |
-| Copilot | AI-US | Singapore |
+| 服务 | 策略组 | 默认地区 |
+|------|--------|----------|
+| ChatGPT / OpenAI | AI-US | 新加坡 |
+| Claude / Anthropic | Claude | 新加坡 |
+| Gemini | AI-US | 美国 |
+| Grok | AI-US | 美国 |
+| DeepSeek | AI-US | 新加坡 |
+| Perplexity | AI-US | 新加坡 |
+| Copilot | AI-US | 新加坡 |
 
-### Streaming & Social Media
-Independent policy groups with region selection for each service:
-- **Streaming**: YouTube, Netflix, Spotify
-- **Social**: Twitter/X, Facebook, Instagram, Reddit
-- **Communication**: Telegram, WhatsApp, Discord
-- **Development**: GitHub
+### 流媒体 & 社交平台
+每个服务独立策略组，可单独选择地区节点：
+- **流媒体**：YouTube、Netflix、Spotify
+- **社交**：Twitter/X、Facebook、Instagram、Reddit
+- **通讯**：Telegram、WhatsApp、Discord
+- **开发**：GitHub
 
-### Ad Blocking
-- Remote rule lists from [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
-- Local keyword-based fallback rules (active even when remote lists fail)
+### 广告拦截
+- 远程规则列表：来自 [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
+- 本地关键词拦截：远程列表失效时自动兜底
 
-### Other
-- **Apple / Microsoft**: Default DIRECT, switchable to proxy
-- **Gaming**: Low-latency auto-select for Asia nodes (HK/JP/SG)
-- **China**: DIRECT via GeoIP + ChinaMax rule list
-- **Final fallback**: Global proxy
+### 其他
+- **Apple / Microsoft**：默认直连，可手动切换代理
+- **电竞优化**：亚洲低延迟自动选择（港/日/新）
+- **国内流量**：GeoIP + ChinaMax 规则直连
+- **兜底规则**：未匹配流量走 Global 代理
 
 ---
 
-## Policy Group Architecture
+## 策略组架构
 
 ```
-Global (Auto / US / HK / JP / SG / TW / DIRECT)
+Global（Auto / US / HK / JP / SG / TW / DIRECT）
   |
-  |-- AI-US ........... ChatGPT, Gemini, Grok, DeepSeek, Perplexity, Copilot
-  |-- AI-API .......... OpenAI API calls
+  |-- AI-US ........... ChatGPT、Gemini、Grok、DeepSeek、Perplexity、Copilot
+  |-- AI-API .......... OpenAI API 调用
   |-- Claude .......... Claude / Anthropic
   |
   |-- YouTube ......... YouTube + CDN
   |-- Netflix ......... Netflix
   |-- Spotify ......... Spotify
-  |-- Media ........... Other streaming
+  |-- Media ........... 其他海外流媒体
   |
   |-- Twitter ......... Twitter / X
   |-- Facebook ........ Facebook
@@ -62,73 +62,73 @@ Global (Auto / US / HK / JP / SG / TW / DIRECT)
   |-- GitHub .......... GitHub
   |
   |-- Telegram ........ Telegram
-  |-- WhatsApp ........ WhatsApp + IP-CIDR
-  |-- Google .......... Google services
-  |-- Apple ........... Apple (default DIRECT)
-  |-- Microsoft ....... Microsoft (default DIRECT)
+  |-- WhatsApp ........ WhatsApp + IP 段
+  |-- Google .......... Google 服务
+  |-- Apple ........... Apple（默认直连）
+  |-- Microsoft ....... Microsoft（默认直连）
   |
-  |-- Asia-LowLatency . Gaming (auto low-latency)
-  |-- China ........... Domestic (DIRECT)
-  |-- Advertising ..... Ad blocking (REJECT)
-  |-- Privacy ......... Privacy tracking (REJECT)
-  |-- Final ........... Fallback (Global / DIRECT)
+  |-- Asia-LowLatency . 电竞低延迟（自动测速）
+  |-- China ........... 国内（直连）
+  |-- Advertising ..... 广告拦截（REJECT）
+  |-- Privacy ......... 隐私追踪拦截（REJECT）
+  |-- Final ........... 兜底（Global / DIRECT）
 ```
 
 ---
 
-## How to Import / Usage
+## 导入教程
 
-### Step 1: Open Settings
+### 第一步：进入设置
 
-Open Quantumult X, tap the **wind-vane icon** at the bottom-right corner to enter the settings page.
+打开 Quantumult X，点击右下角的**风车图标**进入设置页面。
 
 <img src="images/01-main-page.png" width="300">
 
-### Step 2: Edit Profile
+### 第二步：编辑配置
 
-Tap the **link icon** at the top-right, then select **Edit** to open the configuration editor.
+点击右上角的**链接图标**，选择 **Edit**，进入配置编辑器。
 
 <img src="images/02-edit-profile.png" width="300">
 
-### Step 3: Paste Configuration
+### 第三步：粘贴配置
 
-**Clear the existing content**, then paste the entire configuration from [`QuantumultX.conf`](QuantumultX.conf). Tap the **checkmark** at the top-right to save.
+**清空原有内容**，将 [`QuantumultX.conf`](QuantumultX.conf) 中的全部内容粘贴进去，点击右上角 **对勾** 保存。
 
 <img src="images/03-paste-config.jpg" width="300">
 
-### Step 4: Replace Subscription Link
+### 第四步：替换订阅链接
 
-Find this line in `[server_remote]`:
+找到 `[server_remote]` 中的这一行：
 
 ```
 换成自己的订阅链接🔗,tag=Nodes,update-interval=172800,opt-parser=true,enabled=true
 ```
 
-Replace `换成自己的订阅链接🔗` with your actual subscription URL.
+将 `换成自己的订阅链接🔗` 替换为你自己的机场订阅地址。
 
-### Step 5: Enable MitM (Optional)
+### 第五步：开启 MitM（可选）
 
-If you need rewrite/MitM features, go to **MitM** section in settings and generate & install the CA certificate.
-
----
-
-## Rule Priority
-
-Rules are evaluated in the following order (highest priority first):
-
-1. **Local rules** (`[filter_local]`) - AI, WhatsApp, YouTube, social media anti-hijack rules
-2. **Remote rules** (`[filter_remote]`) - Comprehensive rule lists from blackmatrix7
-3. **GeoIP CN** - Domestic traffic direct
-4. **Final** - Everything else goes through Global proxy
+如需使用重写/MitM 功能，请在设置中的 **MitM** 模块生成并安装 CA 证书。
 
 ---
 
-## Credits
+## 规则优先级
 
-- Rule lists: [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
-- Icons: [Koolson/Qure](https://github.com/Koolson/Qure)
-- Resource parser: [KOP-XIAO/QuantumultX](https://github.com/KOP-XIAO/QuantumultX)
+规则按以下顺序匹配（优先级从高到低）：
 
-## License
+1. **本地规则**（`[filter_local]`）— AI、WhatsApp、YouTube、社交平台防抢规则
+2. **远程规则**（`[filter_remote]`）— blackmatrix7 完整规则列表
+3. **GeoIP CN** — 国内流量直连
+4. **Final** — 未匹配流量走 Global 代理
+
+---
+
+## 致谢
+
+- 规则列表：[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
+- 策略图标：[Koolson/Qure](https://github.com/Koolson/Qure)
+- 资源解析器：[KOP-XIAO/QuantumultX](https://github.com/KOP-XIAO/QuantumultX)
+
+## 许可证
 
 MIT
