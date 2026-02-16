@@ -33,6 +33,16 @@
 - 远程规则列表：来自 [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
 - 本地关键词拦截：远程列表失效时自动兜底
 
+### 应用去广告（MitM 重写）
+通过 MitM + 脚本重写，深度去除应用内广告：
+
+| 应用 | 去广告范围 | 来源 |
+|------|-----------|------|
+| **微博** | 首页信息流、搜索页、详情页、评论区、开屏广告、视频流、个人页推广等 | [@ddgksf2013](https://github.com/ddgksf2013/Rewrite) |
+| **YouTube** | 视频贴片广告、瀑布流广告、搜索页广告、短视频广告，附带 PIP 画中画 + 后台播放 | [@Maasea](https://github.com/Maasea/sgmodule) / [@ddgksf2013](https://github.com/ddgksf2013/Rewrite) |
+
+> **注意**：应用去广告功能需要开启 MitM 并信任证书才能生效。
+
 ### 其他
 - **Apple / Microsoft**：默认直连，可手动切换代理
 - **电竞优化**：亚洲低延迟自动选择（港/日/新）
@@ -120,7 +130,9 @@ Global（Auto / US / HK / JP / SG / TW / DIRECT）
 
 ### 第五步：开启 MitM（可选）
 
-如需使用重写/MitM 功能，请在设置中的 **MitM** 模块生成并安装 CA 证书。
+如需使用重写/MitM 功能（微博去广告、YouTube 去广告等均依赖此功能），请在设置中的 **MitM** 模块生成并安装 CA 证书。
+
+> **YouTube 去广告提示**：如果视频广告仍然存在，请在配置文件 `[general]` 下添加 `udp_drop_list=443`。
 
 ---
 
@@ -140,6 +152,8 @@ Global（Auto / US / HK / JP / SG / TW / DIRECT）
 - 规则列表：[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
 - 策略图标：[Koolson/Qure](https://github.com/Koolson/Qure)
 - 资源解析器：[KOP-XIAO/QuantumultX](https://github.com/KOP-XIAO/QuantumultX)
+- 微博去广告：[ddgksf2013/Rewrite](https://github.com/ddgksf2013/Rewrite)（墨鱼版）
+- YouTube 去广告：[Maasea/sgmodule](https://github.com/Maasea/sgmodule) / [ddgksf2013/Rewrite](https://github.com/ddgksf2013/Rewrite)
 
 ## 许可证
 
