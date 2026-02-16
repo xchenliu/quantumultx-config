@@ -132,7 +132,9 @@ Global（Auto / US / HK / JP / SG / TW / DIRECT）
 
 如需使用重写/MitM 功能（微博去广告、YouTube 去广告等均依赖此功能），请在设置中的 **MitM** 模块生成并安装 CA 证书。
 
-> **YouTube 去广告提示**：如果视频广告仍然存在，请在配置文件 `[general]` 下添加 `udp_drop_list=443`。
+> **YouTube 去广告提示**：配置已内置 `udp_drop_list=443`。如果视频广告仍然存在，请尝试：
+> 1. **卸载并重装 YouTube App**（清除旧缓存中的广告数据）
+> 2. 回到 Quantumult X，进入 **风车 → 重写 → 引用**，左滑 YouTube 去广告规则，点击**刷新**更新到最新版本
 
 ---
 
